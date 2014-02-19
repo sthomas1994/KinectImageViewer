@@ -1,0 +1,39 @@
+﻿<Window x:Class="KinectImageViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Kinect Image Viewer" Height="566.114" Width="1018.374" WindowState="Maximized">
+
+    <Grid ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        <TabControl x:Name="mainTab" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,103">
+            <TabItem Header="Photo">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="previousBtn" Content="Prev" HorizontalAlignment="Left" Height="80" Margin="0,183,0,0" VerticalAlignment="Top" Width="80" Click="previousBtn_Click" />
+                    <Button x:Name="nextBtn" Content="Next" HorizontalAlignment="Right" Height="80" Margin="924,183,0,0" VerticalAlignment="Top" Width="80" Click="nextBtn_Click" />
+                    <Image HorizontalAlignment="Left" Height="294" Margin="183,78,0,0" VerticalAlignment="Top" Width="649"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Video" Height="20" VerticalAlignment="Bottom">
+                <Grid Background="#FFE5E5E5">
+                    <Button Content="Prev" HorizontalAlignment="Left" Height="80" Margin="0,183,0,0" VerticalAlignment="Top" Width="80"/>
+                    <Button Content="Next" HorizontalAlignment="Right" Height="80" Margin="924,183,0,0" VerticalAlignment="Top" Width="80"/>
+                    <MediaElement HorizontalAlignment="Left" Height="294" Margin="183,78,0,0" VerticalAlignment="Top" Width="649"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Camera">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Tools">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="importBtn" Content="Import" HorizontalAlignment="Left" Height="83" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="importBtn_Click"/>
+                    <Button x:Name="slideBtn" Content="Slideshow" HorizontalAlignment="Left" Height="83" Margin="230,10,0,0" VerticalAlignment="Top" Width="200"/>
+                    <Button x:Name="playBtn" Content="Playlist" HorizontalAlignment="Left" Height="83" Margin="450,10,0,0" VerticalAlignment="Top" Width="200"/>
+                    <Button x:Name="helpBtn" Content="Help" HorizontalAlignment="Left" Height="83" Margin="670,10,0,0" VerticalAlignment="Top" Width="200" Click="helpBtn_Click"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+        <GroupBox Header="Toolbar" HorizontalAlignment="Stretch" Height="100" Margin="10,432,0,0" VerticalAlignment="Bottom" Width="Auto"/>
+
+    </Grid>
+
+</Window>

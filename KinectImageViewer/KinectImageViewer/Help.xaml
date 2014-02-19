@@ -1,0 +1,9 @@
+﻿<Window x:Class="KinectImageViewer.Help"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Help" Height="300" Width="300">
+    <Grid>
+        <Label Content="Kinect Image Listener - Version 1.0&#xD;&#xA;This image viewer will help you view your&#xD;&#xA;computer's images and videos without the need&#xD;&#xA;to use a mouse or keyboard.&#xD;&#xA;Use the Photo tab to view your photos, the&#xD;&#xA;Video tab to view your videos, the Camera tab&#xD;&#xA;to take a photo or the Tools tab to create a&#xD;&#xA;playlist, slideshow or import pictures." Margin="10,10,10,0" VerticalAlignment="Top" Height="249"/>
+
+    </Grid>
+</Window>
