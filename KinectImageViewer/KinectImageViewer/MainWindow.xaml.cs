@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 
 namespace KinectImageViewer
@@ -27,11 +28,17 @@ namespace KinectImageViewer
         progLogic pL = new progLogic();
 
         protected string[] picFiles;
-        protected int currentImg = -1;
+        protected int currentImg = 0;
 
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+            picFiles = Directory.GetFiles(@"images");
+            ShowCurrentImage();
         }
 
         private void previousBtn_Click(object sender, RoutedEventArgs e)
@@ -43,7 +50,7 @@ namespace KinectImageViewer
             }
         }
 
-        private void nextBtn_Click(object sender, RoutedEventArgs e)
+        private void nextBtn_Click(object sender, System.EventArgs e)
         {
             if (picFiles.Length > 0)
             {
@@ -56,7 +63,8 @@ namespace KinectImageViewer
         {
             if (currentImg >= 0 && currentImg <= picFiles.Length - 1)
             {
-               //mainImage = System.Windows.Controls.Image.FromFile(picFiles[currentImg]);
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[currentImg], UriKind.RelativeOrAbsolute));
+                ImageBox.Source = bm;
             }
         }
 
