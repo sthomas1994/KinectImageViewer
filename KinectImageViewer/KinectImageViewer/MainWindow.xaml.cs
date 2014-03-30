@@ -39,6 +39,10 @@ namespace KinectImageViewer
         {
             picFiles = Directory.GetFiles(@"images");
             ShowCurrentImage();
+            ShowNextImage();
+            ShowSecondNextImage();
+            ShowPreviousImage();
+            ShowSecondPreviousImage();
         }
 
         private void previousBtn_Click(object sender, RoutedEventArgs e)
@@ -47,6 +51,10 @@ namespace KinectImageViewer
             {
                 currentImg = currentImg == 0 ? picFiles.Length - 1 : --currentImg;
                 ShowCurrentImage();
+                ShowNextImage();
+                ShowSecondNextImage();
+                ShowPreviousImage();
+                ShowSecondPreviousImage();
             }
         }
 
@@ -56,6 +64,10 @@ namespace KinectImageViewer
             {
                 currentImg = currentImg == picFiles.Length - 1 ? 0 : ++currentImg;
                 ShowCurrentImage();
+                ShowNextImage();
+                ShowSecondNextImage();
+                ShowPreviousImage();
+                ShowSecondPreviousImage();
             }
         }
 
@@ -65,6 +77,80 @@ namespace KinectImageViewer
             {
                 BitmapImage bm = new BitmapImage(new Uri(picFiles[currentImg], UriKind.RelativeOrAbsolute));
                 ImageBox.Source = bm;
+            }
+        }
+
+        protected void ShowNextImage()
+        {
+            int nextImg = currentImg + 1;
+
+            if (nextImg > picFiles.Length - 1)
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[0], UriKind.RelativeOrAbsolute));
+                NextImageBox.Source = bm;
+            }           
+            else
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[nextImg], UriKind.RelativeOrAbsolute));
+                NextImageBox.Source = bm;
+            }
+        }
+
+        protected void ShowSecondNextImage()
+        {
+            int Img = currentImg + 2;
+
+            if (Img > picFiles.Length)
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[1], UriKind.RelativeOrAbsolute));
+                SecondNextImageBox.Source = bm;
+            }
+            else if (Img > picFiles.Length - 1)
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[0], UriKind.RelativeOrAbsolute));
+                SecondNextImageBox.Source = bm;
+            }
+            else
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[Img], UriKind.RelativeOrAbsolute));
+                SecondNextImageBox.Source = bm;
+            }
+        }
+
+        protected void ShowSecondPreviousImage()
+        {
+            int Img = currentImg - 2;
+
+            if (Img < -1)
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[picFiles.Length - 2], UriKind.RelativeOrAbsolute));
+                SecondPreviousImageBox.Source = bm;
+            }
+            else if (Img < 0)
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[picFiles.Length - 1], UriKind.RelativeOrAbsolute));
+                SecondPreviousImageBox.Source = bm;
+            }
+            else
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[Img], UriKind.RelativeOrAbsolute));
+                SecondPreviousImageBox.Source = bm;
+            }
+        }
+
+        protected void ShowPreviousImage()
+        {
+            int Img = currentImg - 1;
+
+            if (Img < 0)
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[picFiles.Length - 1], UriKind.RelativeOrAbsolute));
+                PreviousImageBox.Source = bm;
+            }
+            else
+            {
+                BitmapImage bm = new BitmapImage(new Uri(picFiles[Img], UriKind.RelativeOrAbsolute));
+                PreviousImageBox.Source = bm;
             }
         }
 
@@ -164,6 +250,11 @@ namespace KinectImageViewer
             // their respective slider controls.
             myMediaElement.Volume = (double)volumeSlider.Value;
             myMediaElement.SpeedRatio = (double)speedRatioSlider.Value;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }
