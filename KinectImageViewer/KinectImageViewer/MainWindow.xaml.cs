@@ -175,6 +175,12 @@ namespace KinectImageViewer
             h.Show();
         }
 
+        private void fullscrnBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FullscreenPics f = new FullscreenPics(currentImg);
+            f.Show();
+        }
+
         void OnMouseDownPlayMedia(object sender, MouseButtonEventArgs args)
         {
 
@@ -211,8 +217,17 @@ namespace KinectImageViewer
         // Change the volume of the media. 
         private void ChangeMediaVolume(object sender, RoutedPropertyChangedEventArgs<double> args)
         {
-            myMediaElement.Volume = (double)volumeSlider.Value;
+            try
+            {
+                myMediaElement.Volume = (double)volumeSlider.Value;
+            }
+            catch(NullReferenceException n)
+            {
+                
+            }
+                
         }
+
 
         // Change the speed of the media. 
         private void ChangeMediaSpeedRatio(object sender, RoutedPropertyChangedEventArgs<double> args)

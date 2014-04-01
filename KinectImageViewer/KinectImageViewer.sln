@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectImageViewer", "KinectImageViewer\KinectImageViewer.csproj", "{FF4EEDAB-33BD-4F8F-8B5C-A1F3B9008A63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{30B10273-3A13-4D5A-9010-BE9F09DDC06C}"
+	ProjectSection(SolutionItems) = preProject
+		KinectImageViewer\FullscreenPics.xaml = KinectImageViewer\FullscreenPics.xaml
+		KinectImageViewer\FullscreenPics.xaml.cs = KinectImageViewer\FullscreenPics.xaml.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
