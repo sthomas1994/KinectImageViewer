@@ -1,0 +1,12 @@
+﻿<Window x:Class="KinectImageViewer.FullscreenPics"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Fullscreen" Height="673.256" Width="1020.93" WindowState="Maximized" WindowStyle="None"
+        Loaded="OnLoad">
+    <Grid Background="Black" Margin="0,0,0,0">
+        <Image x:Name="FullscreenImageBox" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="auto" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Exit" HorizontalAlignment="Center" Height="42" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="92" Click="Exit"/>
+        <Button Content="Next" HorizontalAlignment="Center" Height="42" Margin="300,0,0,10" VerticalAlignment="Bottom" Width="87" Click="nextBtn_Click"/>
+        <Button Content="Previous" HorizontalAlignment="Center" Height="42" Margin="0,0,300,10" VerticalAlignment="Bottom" Width="89" Click="previousBtn_Click"/>
+    </Grid>
+</Window>
