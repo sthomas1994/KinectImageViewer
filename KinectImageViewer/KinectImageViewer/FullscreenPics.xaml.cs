@@ -36,7 +36,11 @@ namespace KinectImageViewer
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            picFiles = Directory.GetFiles(@"images");
+            String i = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            string[] ext = { ".jpg", ".jpeg", ".gif", ".png", ".bmp", ".tiff" };
+            picFiles = Directory.GetFiles(i, "*.*")
+                .Where(f => ext.Contains(new FileInfo(f).Extension.ToLower())).ToArray();
+            Console.WriteLine(picFiles.Length);
             ShowCurrentImage();            
         }
 
