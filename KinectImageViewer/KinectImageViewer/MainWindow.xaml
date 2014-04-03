@@ -67,7 +67,7 @@
                 <Grid Background="Black">
                     <Button Content="Prev" HorizontalAlignment="Left" Height="80" Margin="0,183,0,0" VerticalAlignment="Top" Width="80"/>
                     <Button Content="Next" HorizontalAlignment="Right" Height="80" Margin="0,183,0,0" VerticalAlignment="Top" Width="80"/>
-                    <!--<StackPanel Background="Black">-->                    
+                    <!--<StackPanel Background="Black">-->
                     <Viewbox HorizontalAlignment="Center" Height="auto" Margin="80,27,80,200" VerticalAlignment="Top" Width="auto" Stretch="Uniform">
                         <!--<StackPanel Background="Black">-->
                         <MediaElement Source="C:\Users\Public\Videos\Sample Videos\Wildlife.wmv" x:Name="myMediaElement" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Top" Width="auto" LoadedBehavior="Manual" UnloadedBehavior="Stop" 
@@ -93,9 +93,11 @@
                         <Slider x:Name="speedRatioSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaSpeedRatio" Value="1" Width="70" />
 
                         <!-- Seek to slider. Ths slider allows you to jump to different parts of the media playback. -->
-                        <TextBlock Foreground="White" Margin="5"  VerticalAlignment="Center"><Run Text="Seek To"/></TextBlock>
-                        <Slider x:Name="timelineSlider" Margin="5" ValueChanged="SeekToMediaPosition" Width="70" Height="23"/>
+                        <!--<TextBlock Foreground="White" Margin="5"  VerticalAlignment="Center"><Run Text="Seek To"/></TextBlock>-->
+                        <!--<Slider x:Name="timelineSlider" Margin="5" ValueChanged="SeekToMediaPosition" Width="70" Height="23"/>-->
                     </StackPanel>
+                    <Button Content="Fullscreen" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="75" Click="fullscrnVidBtn_Click"/>
+                    <Slider x:Name="DurationSlider" ValueChanged="SeekToMediaPosition" MouseDown="OnMouseOverPauseMedia" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Margin="0,0,0,160" Width="532"/>
                     <!-- </StackPanel>-->
                 </Grid>
             </TabItem>
