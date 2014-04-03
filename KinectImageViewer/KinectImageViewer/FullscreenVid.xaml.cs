@@ -29,10 +29,10 @@ namespace KinectImageViewer
         protected string[] picFiles;
         protected int currentImg = 0;
         protected bool isPlaying = false;
-        protected double time;
-        protected double volume;
-        protected double speed;
-        protected double maxTime;
+        protected double time = 0;
+        protected double volume = 0;
+        protected double speed = 0;
+        protected double maxTime = 0;
         protected bool mediaOpened = false;
 
         public FullscreenVid(int shownImg, bool playing, double timeIn, double volumeIn, double speedIn, double maxTimeIn, bool opened)
@@ -43,7 +43,8 @@ namespace KinectImageViewer
             volume = volumeIn;
             speed = speedIn;
             maxTime = maxTimeIn;
-            mediaOpened = opened;           
+            mediaOpened = opened;     
+            /*
             if(mediaOpened)
             {
                 timelineSlider.Maximum = (int)maxTime;
@@ -55,6 +56,7 @@ namespace KinectImageViewer
                 TimeSpan ts = new TimeSpan(0, 0, 0, 0, intTime);
                 myVideoElement.Position = ts;           
             }
+             */ 
             isPlaying = playing;
             if(isPlaying)
             {
@@ -152,7 +154,22 @@ namespace KinectImageViewer
         // to the total number of miliseconds in the length of the media clip. 
         private void Element_MediaOpened(object sender, EventArgs e)
         {
-            if (!mediaOpened)
+            if (isPlaying)
+            {
+                myVideoElement.Pause();
+            }
+            if (mediaOpened)
+            {
+                timelineSlider.Maximum = maxTime;
+                timelineSlider.Value = time;
+                speedRatioSlider.Value = speed;
+                volumeSlider.Value = volume;
+                InitializePropertyValues();
+                int intTime = (int)time;
+                TimeSpan ts = new TimeSpan(0, 0, 0, 0, intTime);
+                myVideoElement.Position = ts;
+            }
+            else if (!mediaOpened)
             {
                 InitializePropertyValues();
                 timelineSlider.Maximum = myVideoElement.NaturalDuration.TimeSpan.TotalMilliseconds;
@@ -163,6 +180,10 @@ namespace KinectImageViewer
             ticks.Interval = TimeSpan.FromMilliseconds(1);
             ticks.Tick += ticks_Tick;
             ticks.Start();
+            if (isPlaying)
+            {
+                myVideoElement.Play();
+            }
         }
 
         // When the media playback is finished. Stop() the media to seek to media start. 

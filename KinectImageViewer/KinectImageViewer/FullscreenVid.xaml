@@ -20,11 +20,11 @@
 
             <!-- Volume slider. This slider allows a Volume range between 0 and 1. -->
             <TextBlock Foreground="White" VerticalAlignment="Center" Margin="5"  ><Run Text="Volume"/></TextBlock>
-            <Slider x:Name="volumeSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaVolume" Minimum="0" Maximum="1" Value="0.5" Width="70"/>
+            <Slider x:Name="volumeSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaVolume" Minimum="0" Maximum="10" Value="5" Width="70"/>
 
             <!-- Speed slider. This slider allows you to change the speed of the media playback. -->
             <TextBlock Foreground="White" Margin="5"  VerticalAlignment="Center"><Run Text="Speed"/></TextBlock>
-            <Slider x:Name="speedRatioSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaSpeedRatio" Value="1" Width="70" />
+            <Slider x:Name="speedRatioSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaSpeedRatio" Minimum="0" Value="1" Maximum="2" Width="70" />
 
             <!-- Seek to slider. Ths slider allows you to jump to different parts of the media playback. -->
             <TextBlock Foreground="White" Margin="5"  VerticalAlignment="Center"><Run Text="Seek To"/></TextBlock>

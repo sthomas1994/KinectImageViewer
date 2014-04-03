@@ -46,7 +46,7 @@ namespace KinectImageViewer
             string[] ext = { ".jpg", ".jpeg", ".gif", ".png", ".bmp", ".tiff"};
             picFiles = Directory.GetFiles(i, "*.*")
                 .Where(f => ext.Contains(new FileInfo(f).Extension.ToLower())).ToArray();
-            Console.WriteLine(picFiles.Length);
+            Console.WriteLine(picFiles.Length);   
             ShowCurrentImage();
             ShowNextImage();
             ShowSecondNextImage();
