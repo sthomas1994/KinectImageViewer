@@ -25,16 +25,22 @@ namespace KinectImageViewer
     {
         protected string[] picFiles;
         protected int currentImg = 0;
+        MainWindow main;
 
-        public FullscreenPics(int shownImg)
+        public FullscreenPics(int shownImg, MainWindow m)
         {
             currentImg = shownImg;
+            main = m;
             InitializeComponent();            
         }
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            picFiles = Directory.GetFiles(@"images");
+            String i = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            string[] ext = { ".jpg", ".jpeg", ".gif", ".png", ".bmp", ".tiff" };
+            picFiles = Directory.GetFiles(i, "*.*")
+                .Where(f => ext.Contains(new FileInfo(f).Extension.ToLower())).ToArray();
+            Console.WriteLine(picFiles.Length);
             ShowCurrentImage();            
         }
 
@@ -44,6 +50,7 @@ namespace KinectImageViewer
             {
                 currentImg = currentImg == 0 ? picFiles.Length - 1 : --currentImg;
                 ShowCurrentImage();
+                main.setCurrentImg(currentImg);
             }
         }
 
@@ -53,6 +60,7 @@ namespace KinectImageViewer
             {
                 currentImg = currentImg == picFiles.Length - 1 ? 0 : ++currentImg;
                 ShowCurrentImage();
+                main.setCurrentImg(currentImg);
             }
         }
 
@@ -67,6 +75,7 @@ namespace KinectImageViewer
 
         private void Exit(object sender, System.EventArgs e)
         {
+            main.setCurrentImg(currentImg);
             this.Close();
         }
 

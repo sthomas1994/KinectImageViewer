@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Windows.Threading;
 
 
 namespace KinectImageViewer
@@ -27,8 +28,12 @@ namespace KinectImageViewer
     {
         progLogic pL = new progLogic();
 
+        DispatcherTimer ticks = new DispatcherTimer();
+
         protected string[] picFiles;
         protected int currentImg = 0;
+        protected bool isPlaying = false;
+        protected bool mediaOpened = false;
 
         public MainWindow()
         {
@@ -41,7 +46,7 @@ namespace KinectImageViewer
             string[] ext = { ".jpg", ".jpeg", ".gif", ".png", ".bmp", ".tiff"};
             picFiles = Directory.GetFiles(i, "*.*")
                 .Where(f => ext.Contains(new FileInfo(f).Extension.ToLower())).ToArray();
-            Console.WriteLine(picFiles.Length);
+            Console.WriteLine(picFiles.Length);   
             ShowCurrentImage();
             ShowNextImage();
             ShowSecondNextImage();
@@ -181,8 +186,20 @@ namespace KinectImageViewer
 
         private void fullscrnBtn_Click(object sender, RoutedEventArgs e)
         {
-            FullscreenPics f = new FullscreenPics(currentImg);
+            FullscreenPics f = new FullscreenPics(currentImg, this);
             f.Show();
+        }
+
+        private void fullscrnVidBtn_Click(object sender, RoutedEventArgs e)
+        {
+            myMediaElement.Pause();
+            double timeIn = myMediaElement.Position.TotalMilliseconds;
+            double maxTime = DurationSlider.Maximum;
+            double volumeIn = volumeSlider.Value;
+            double speedIn = speedRatioSlider.Value;
+            FullscreenVid v = new FullscreenVid(currentImg, isPlaying, timeIn, volumeIn, speedIn, maxTime, mediaOpened);
+            v.Show();
+            isPlaying = false;
         }
 
         void OnMouseDownPlayMedia(object sender, MouseButtonEventArgs args)
@@ -192,6 +209,7 @@ namespace KinectImageViewer
             // resume media if it is paused. This has no effect if the media is 
             // already running.
             myMediaElement.Play();
+            isPlaying = true;
 
             // Initialize the MediaElement property values.
             InitializePropertyValues();
@@ -205,6 +223,18 @@ namespace KinectImageViewer
             // The Pause method pauses the media if it is currently running. 
             // The Play method can be used to resume.
             myMediaElement.Pause();
+            isPlaying = false;
+
+        }
+
+        // Pause the media. 
+        void OnMouseOverPauseMedia(object sender, MouseButtonEventArgs args)
+        {
+
+            // The Pause method pauses the media if it is currently running. 
+            // The Play method can be used to resume.
+            myMediaElement.Pause();
+            isPlaying = false;
 
         }
 
@@ -215,6 +245,7 @@ namespace KinectImageViewer
             // The Stop method stops and resets the media to be played from 
             // the beginning.
             myMediaElement.Stop();
+            isPlaying = true;
 
         }
 
@@ -243,24 +274,40 @@ namespace KinectImageViewer
         // to the total number of miliseconds in the length of the media clip. 
         private void Element_MediaOpened(object sender, EventArgs e)
         {
-            timelineSlider.Maximum = myMediaElement.NaturalDuration.TimeSpan.TotalMilliseconds;
+            mediaOpened = true;
+            //timelineSlider.Maximum = myMediaElement.NaturalDuration.TimeSpan.TotalMilliseconds;
+            DurationSlider.Maximum = myMediaElement.NaturalDuration.TimeSpan.TotalMilliseconds;
+            ticks.Interval = TimeSpan.FromMilliseconds(1);
+            ticks.Tick += ticks_Tick;
+            ticks.Start();
         }
 
         // When the media playback is finished. Stop() the media to seek to media start. 
         private void Element_MediaEnded(object sender, EventArgs e)
         {
             myMediaElement.Stop();
+            isPlaying = false;
         }
 
         // Jump to different parts of the media (seek to).  
         private void SeekToMediaPosition(object sender, RoutedPropertyChangedEventArgs<double> args)
         {
-            int SliderValue = (int)timelineSlider.Value;
+            if(!isPlaying)
+            {
+                int SliderValue = (int)DurationSlider.Value;
 
-            // Overloaded constructor takes the arguments days, hours, minutes, seconds, miniseconds. 
-            // Create a TimeSpan with miliseconds equal to the slider value.
-            TimeSpan ts = new TimeSpan(0, 0, 0, 0, SliderValue);
-            myMediaElement.Position = ts;
+                // Overloaded constructor takes the arguments days, hours, minutes, seconds, miniseconds. 
+                // Create a TimeSpan with miliseconds equal to the slider value.
+                TimeSpan ts = new TimeSpan(0, 0, 0, 0, SliderValue);
+                myMediaElement.Position = ts;
+            }
+        }
+
+        //Updating the Slider Value of Media(Video Duration) 
+        void ticks_Tick(object sender, object e)
+        {
+            DurationSlider.Value = myMediaElement.Position.TotalMilliseconds;
+            //DurationText.Text = Milliseconds_to_Minute((long)VideoPlayer.Position.TotalMilliseconds);
         }
 
         void InitializePropertyValues()
@@ -276,5 +323,14 @@ namespace KinectImageViewer
 
         }
 
+        public void setCurrentImg(int n)
+        {
+            currentImg = n;
+            ShowCurrentImage();
+            ShowNextImage();
+            ShowSecondNextImage();
+            ShowPreviousImage();
+            ShowSecondPreviousImage();
+        }
     }
 }
