@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Threading;
+using System.Threading;
 
 
 namespace KinectImageViewer
@@ -29,11 +30,13 @@ namespace KinectImageViewer
         progLogic pL = new progLogic();
 
         DispatcherTimer ticks = new DispatcherTimer();
+        DispatcherTimer pauser = new DispatcherTimer();
 
         protected string[] picFiles;
         protected int currentImg = 0;
         protected bool isPlaying = false;
         protected bool mediaOpened = false;
+        protected bool tabOpened = false;
 
         public MainWindow()
         {
@@ -52,6 +55,13 @@ namespace KinectImageViewer
             ShowSecondNextImage();
             ShowPreviousImage();
             ShowSecondPreviousImage();
+        }
+
+        private void pause_Media(object sender, EventArgs e)
+        {
+            myMediaElement.Pause();
+            isPlaying = false;
+            pauser.Stop();
         }
 
         private void previousBtn_Click(object sender, RoutedEventArgs e)
@@ -331,6 +341,75 @@ namespace KinectImageViewer
             ShowSecondNextImage();
             ShowPreviousImage();
             ShowSecondPreviousImage();
+        }
+
+        private delegate void setImageDelegate(string controlName, BitmapFrame frame);
+        private void setImage(string controlName, BitmapFrame frame)
+        {
+            var control = FindName(controlName);
+            if (control != null)
+                ((System.Windows.Controls.Image)control).Source = frame;
+        }
+
+        private void makeThumbnails(BitmapFrame frame, object state)
+        {
+            Dispatcher.Invoke(new setImageDelegate(setImage), (string)state, frame);
+        }
+
+        private void makeJpeg(BitmapFrame frame, object state)
+        {
+            var encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(frame);
+
+            string filename = (string)state + ".jpg";
+            using (var fs = new FileStream(filename, FileMode.Create))
+                encoder.Save(fs);
+        }
+
+        private void image_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var source = myMediaElement.Source;
+
+            VideoScreenShot.CaptureScreenAsync(source, new Dictionary<TimeSpan, object> { 
+				{TimeSpan.FromSeconds(10), "image0"} ,
+				{TimeSpan.FromSeconds(20), "image1"} ,
+				{TimeSpan.FromSeconds(30), "image2"} ,
+				{TimeSpan.FromSeconds(40), "image3"} ,
+			}, .1, makeJpeg, makeThumbnails);
+            //VideoScreenShot.CaptureScreenAsync(source, TimeSpan.FromSeconds(10), "image0", .1, makeJpeg, makeThumbnails);
+            //VideoScreenShot.CaptureScreenAsync(source, TimeSpan.FromSeconds(43) + TimeSpan.FromMilliseconds(760), "image1", makeThumbnails);
+        }
+
+        private void TabItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TabItem_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tabOpened = true;
+            myMediaElement.Play();
+            isPlaying = true;
+            if(tabOpened)
+            {
+                pauser.Interval = TimeSpan.FromMilliseconds(100);
+            }
+            else
+            {
+                pauser.Interval = TimeSpan.FromMilliseconds(650);
+            }
+            pauser.Tick += pause_Media;
+            pauser.Start();
+            var source = myMediaElement.Source;
+
+            VideoScreenShot.CaptureScreenAsync(source, new Dictionary<TimeSpan, object> { 
+				{TimeSpan.FromSeconds(10), "image0"} ,
+				{TimeSpan.FromSeconds(20), "image1"} ,
+				{TimeSpan.FromSeconds(30), "image2"} ,
+				{TimeSpan.FromSeconds(40), "image3"} ,
+			}, .1, makeJpeg, makeThumbnails);
+            //VideoScreenShot.CaptureScreenAsync(source, TimeSpan.FromSeconds(10), "image0", .1, makeJpeg, makeThumbnails);
+            //VideoScreenShot.CaptureScreenAsync(source, TimeSpan.FromSeconds(43) + TimeSpan.FromMilliseconds(760), "image1", makeThumbnails);
         }
     }
 }

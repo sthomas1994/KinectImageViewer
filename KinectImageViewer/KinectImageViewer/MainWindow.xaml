@@ -7,36 +7,36 @@
     <Grid ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <TabControl x:Name="mainTab" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TabItem Header="" Margin="0,0,-114,0" HorizontalAlignment="Stretch">
-            	<TabItem.OpacityMask>
-            		<ImageBrush Stretch="Uniform" ImageSource="folder_pictures.png"/>
-            	</TabItem.OpacityMask>
-            	<TabItem.Background>
-            		<ImageBrush Stretch="Uniform" ImageSource="folder_pictures.png"/>
-            	</TabItem.Background>
+                <TabItem.OpacityMask>
+                    <ImageBrush Stretch="Uniform" ImageSource="folder_pictures.png"/>
+                </TabItem.OpacityMask>
+                <TabItem.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="folder_pictures.png"/>
+                </TabItem.Background>
                 <Grid Background="Black" Margin="0,0,0,-5">
                     <Button x:Name="previousBtn" Content="" HorizontalAlignment="Left" Height="470" Margin="7.5,25.5,0,0" VerticalAlignment="Top" Width="26.8" Click="previousBtn_Click" RenderTransformOrigin="0.5,0.5" Focusable="False" >
-                    	<Button.OpacityMask>
-                    		<ImageBrush ImageSource="br_next.png" Stretch="Uniform"/>
-                    	</Button.OpacityMask>
-                    	<Button.RenderTransform>
-                    		<TransformGroup>
-                    			<ScaleTransform/>
-                    			<SkewTransform/>
-                    			<RotateTransform Angle="180"/>
-                    			<TranslateTransform/>
-                    		</TransformGroup>
-                    	</Button.RenderTransform>
-                    	<Button.Background>
-                    		<ImageBrush Stretch="Uniform" ImageSource="br_next.png"/>
-                    	</Button.Background>
+                        <Button.OpacityMask>
+                            <ImageBrush ImageSource="br_next.png" Stretch="Uniform"/>
+                        </Button.OpacityMask>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="br_next.png"/>
+                        </Button.Background>
                     </Button>
                     <Button x:Name="nextBtn" Content="" HorizontalAlignment="Right" Height="467.845" Margin="0,27,10.5,0" VerticalAlignment="Top" Width="26.8" Click="nextBtn_Click" Focusable="False" >
-                    	<Button.OpacityMask>
-                    		<ImageBrush ImageSource="br_next.png" Stretch="Uniform"/>
-                    	</Button.OpacityMask>
-                    	<Button.Background>
-                    		<ImageBrush ImageSource="br_next.png" Stretch="Uniform"/>
-                    	</Button.Background>
+                        <Button.OpacityMask>
+                            <ImageBrush ImageSource="br_next.png" Stretch="Uniform"/>
+                        </Button.OpacityMask>
+                        <Button.Background>
+                            <ImageBrush ImageSource="br_next.png" Stretch="Uniform"/>
+                        </Button.Background>
                     </Button>
                     <Image x:Name="ImageBox" HorizontalAlignment="Center" Height="auto" Margin="0,27,0,175" VerticalAlignment="Top" Width="auto" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
@@ -48,7 +48,7 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Image x:Name="NextImageBox" HorizontalAlignment="Left" Height="124" Margin="228,0,0,20" VerticalAlignment="Bottom" Width="208" RenderTransformOrigin="0.5,0.5">
+                    <Image x:Name="NextImageBox" HorizontalAlignment="Left" Height="124" Margin="238,0,0,20" VerticalAlignment="Bottom" Width="208" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -59,12 +59,12 @@
                         </Image.RenderTransform>
                     </Image>
                     <Button Content="" HorizontalAlignment="Center" Margin="0,0,0,38" VerticalAlignment="Bottom" Width="76" Height="64" Click="fullscrnBtn_Click" Focusable="False">
-                    	<Button.Background>
-                    		<ImageBrush ImageSource="appbar_fullscreen.png"/>
-                    	</Button.Background>
-                    	<Button.OpacityMask>
-                    		<ImageBrush Stretch="Uniform" ImageSource="appbar_fullscreen.png"/>
-                    	</Button.OpacityMask>
+                        <Button.Background>
+                            <ImageBrush ImageSource="appbar_fullscreen.png"/>
+                        </Button.Background>
+                        <Button.OpacityMask>
+                            <ImageBrush Stretch="Uniform" ImageSource="appbar_fullscreen.png"/>
+                        </Button.OpacityMask>
                     </Button>
                     <Image x:Name="SecondNextImageBox" HorizontalAlignment="Left" Height="124" Margin="20,0,0,20" VerticalAlignment="Bottom" Width="208" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
@@ -76,7 +76,7 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Image x:Name="PreviousImageBox" HorizontalAlignment="Right" Height="124" Margin="0,0,228,20" VerticalAlignment="Bottom" Width="208" RenderTransformOrigin="0.5,0.5">
+                    <Image x:Name="PreviousImageBox" HorizontalAlignment="Right" Height="124" Margin="0,0,238,20" VerticalAlignment="Bottom" Width="208" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -98,40 +98,40 @@
                     </Image>
                 </Grid>
             </TabItem>
-            <TabItem Header="" Height="52" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="116,0,-241,0">
-            	<TabItem.OpacityMask>
-            		<ImageBrush Stretch="Uniform" ImageSource="file_movie.png"/>
-            	</TabItem.OpacityMask>
-            	<TabItem.Background>
-            		<ImageBrush Stretch="Uniform" ImageSource="file_movie.png"/>
-            	</TabItem.Background>
+            <TabItem Header="" Height="52" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="116,0,-241,0" GotFocus="TabItem_GotFocus">
+                <TabItem.OpacityMask>
+                    <ImageBrush Stretch="Uniform" ImageSource="file_movie.png"/>
+                </TabItem.OpacityMask>
+                <TabItem.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="file_movie.png"/>
+                </TabItem.Background>
                 <Grid Background="Black">
                     <Button Content="" HorizontalAlignment="Left" Height="467.845" Margin="7.5,27,0,0" VerticalAlignment="Top" Width="26.8" RenderTransformOrigin="0.5,0.5" Focusable="False">
-                    	<Button.OpacityMask>
-                    		<ImageBrush ImageSource="br_next.png" Stretch="Uniform"/>
-                    	</Button.OpacityMask>
-                    	<Button.Background>
-                    		<ImageBrush Stretch="Uniform" ImageSource="br_next.png"/>
-                    	</Button.Background>
-                    	<Button.RenderTransform>
-                    		<TransformGroup>
-                    			<ScaleTransform/>
-                    			<SkewTransform/>
-                    			<RotateTransform Angle="180"/>
-                    			<TranslateTransform/>
-                    		</TransformGroup>
-                    	</Button.RenderTransform>
+                        <Button.OpacityMask>
+                            <ImageBrush ImageSource="br_next.png" Stretch="Uniform"/>
+                        </Button.OpacityMask>
+                        <Button.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="br_next.png"/>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
                     </Button>
-                    <Button Content="" Height="467.845" Margin="961.674,25.5,13.5,0" VerticalAlignment="Top" Focusable="False" Width="26.8">
-                    	<Button.OpacityMask>
-                    		<ImageBrush Stretch="Uniform" ImageSource="br_next.png"/>
-                    	</Button.OpacityMask>
+                    <Button Content="" Height="467.845" HorizontalAlignment="Right" Margin="0,27,10.5,0" VerticalAlignment="Top" Focusable="False" Width="26.8">
+                        <Button.OpacityMask>
+                            <ImageBrush Stretch="Uniform" ImageSource="br_next.png"/>
+                        </Button.OpacityMask>
                     </Button>
                     <!--<StackPanel Background="Black">-->
                     <Viewbox HorizontalAlignment="Center" Height="auto" Margin="80,27,80,200" VerticalAlignment="Top" Width="auto" Stretch="Uniform">
                         <!--<StackPanel Background="Black">-->
                         <MediaElement Source="C:\Users\Public\Videos\Sample Videos\Wildlife.wmv" x:Name="myMediaElement" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Top" Width="auto" LoadedBehavior="Manual" UnloadedBehavior="Stop" 
-                    		Stretch="Fill" MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"/>
+                    		Stretch="Fill" ScrubbingEnabled="True" MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"/>
                     </Viewbox>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,0,0,90">
 
@@ -157,73 +157,74 @@
                         <!--<Slider x:Name="timelineSlider" Margin="5" ValueChanged="SeekToMediaPosition" Width="70" Height="23"/>-->
                     </StackPanel>
                     <Button Content="" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="76" Click="fullscrnVidBtn_Click" Height="64" Focusable="False">
-                    	<Button.OpacityMask>
-                    		<ImageBrush Stretch="Uniform" ImageSource="appbar_fullscreen.png"/>
-                    	</Button.OpacityMask>
-                    	<Button.Background>
-                    		<ImageBrush Stretch="Uniform" ImageSource="appbar_fullscreen.png"/>
-                    	</Button.Background>
+                        <Button.OpacityMask>
+                            <ImageBrush Stretch="Uniform" ImageSource="appbar_fullscreen.png"/>
+                        </Button.OpacityMask>
+                        <Button.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="appbar_fullscreen.png"/>
+                        </Button.Background>
                     </Button>
                     <Slider x:Name="DurationSlider" ValueChanged="SeekToMediaPosition" MouseDown="OnMouseOverPauseMedia" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Margin="0,0,0,160" Width="532"/>
+                    <Image x:Name="image1" HorizontalAlignment="Right" Height="89" Margin="0,0,20,13" VerticalAlignment="Bottom" Width="139"/>
                     <!-- </StackPanel>-->
                 </Grid>
             </TabItem>
             <TabItem Header="" Margin="241.507,0,-241.508,-1" HorizontalAlignment="Stretch" Width="268">
-            	<TabItem.OpacityMask>
-            		<ImageBrush ImageSource="photo.png" Stretch="Uniform"/>
-            	</TabItem.OpacityMask>
-            	<TabItem.Background>
-            		<ImageBrush ImageSource="photo.png" Stretch="Uniform"/>
-            	</TabItem.Background>
+                <TabItem.OpacityMask>
+                    <ImageBrush ImageSource="photo.png" Stretch="Uniform"/>
+                </TabItem.OpacityMask>
+                <TabItem.Background>
+                    <ImageBrush ImageSource="photo.png" Stretch="Uniform"/>
+                </TabItem.Background>
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="" HorizontalAlignment="Stretch" Margin="240.974,0,-372.974,0">
-            	<TabItem.OpacityMask>
-            		<ImageBrush Stretch="Uniform" ImageSource="tools.png"/>
-            	</TabItem.OpacityMask>
-            	<TabItem.Background>
-            		<ImageBrush Stretch="Uniform" ImageSource="tools.png"/>
-            	</TabItem.Background>
+                <TabItem.OpacityMask>
+                    <ImageBrush Stretch="Uniform" ImageSource="tools.png"/>
+                </TabItem.OpacityMask>
+                <TabItem.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="tools.png"/>
+                </TabItem.Background>
                 <Grid Background="#FF8456B2">
                     <Button x:Name="importBtn" Content="" HorizontalAlignment="Left" Height="187.702" Margin="35.5,22,0,0" VerticalAlignment="Top" Width="258.274" Click="importBtn_Click" IsHitTestVisible="True" Focusable="False" FontFamily="Segoe UI" ToolTip="Import Images">
-                    	<Button.OpacityMask>
-                    		<ImageBrush Stretch="Uniform" ImageSource="folder_picture_2.png"/>
-                    	</Button.OpacityMask>
-                    	<Button.Background>
-                    		<ImageBrush ImageSource="folder_picture_2.png" Stretch="Uniform"/>
-                    	</Button.Background>
+                        <Button.OpacityMask>
+                            <ImageBrush Stretch="Uniform" ImageSource="folder_picture_2.png"/>
+                        </Button.OpacityMask>
+                        <Button.Background>
+                            <ImageBrush ImageSource="folder_picture_2.png" Stretch="Uniform"/>
+                        </Button.Background>
                     </Button>
                     <Button x:Name="slideBtn" Content="" HorizontalAlignment="Left" Height="207.8" Margin="755,260.75,0,0" VerticalAlignment="Top" Width="224.374" Focusable="False" ToolTip="Slideshow">
-                    	<Button.OpacityMask>
-                    		<ImageBrush Stretch="Uniform" ImageSource="windows_media_player.png"/>
-                    	</Button.OpacityMask>
-                    	<Button.Background>
-                    		<ImageBrush Stretch="Uniform" ImageSource="windows_media_player.png"/>
-                    	</Button.Background>
+                        <Button.OpacityMask>
+                            <ImageBrush Stretch="Uniform" ImageSource="windows_media_player.png"/>
+                        </Button.OpacityMask>
+                        <Button.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="windows_media_player.png"/>
+                        </Button.Background>
                     </Button>
                     <Button x:Name="playBtn" Content="" HorizontalAlignment="Left" Height="211.777" Margin="75.274,246.588,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5" Focusable="False" ToolTip="Import Videos">
-                    	<Button.OpacityMask>
-                    		<ImageBrush ImageSource="folder_videos_2.png"/>
-                    	</Button.OpacityMask>
-                    	<Button.Background>
-                    		<ImageBrush Stretch="Uniform" ImageSource="folder_videos_2.png"/>
-                    	</Button.Background>
-                    	<Button.RenderTransform>
-                    		<TransformGroup>
-                    			<ScaleTransform/>
-                    			<SkewTransform AngleY="-0.153"/>
-                    			<RotateTransform/>
-                    			<TranslateTransform Y="0.597"/>
-                    		</TransformGroup>
-                    	</Button.RenderTransform>
+                        <Button.OpacityMask>
+                            <ImageBrush ImageSource="folder_videos_2.png"/>
+                        </Button.OpacityMask>
+                        <Button.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="folder_videos_2.png"/>
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleY="-0.153"/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="0.597"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
                     </Button>
                     <Button x:Name="helpBtn" Content="" HorizontalAlignment="Left" Height="170.245" Margin="755,39.457,0,0" VerticalAlignment="Top" Width="215.374" Click="helpBtn_Click" Cursor="Help" Focusable="False" ToolTip="Help" Opacity="0.75">
-                    	<Button.OpacityMask>
-                    		<ImageBrush Stretch="Uniform" ImageSource="help_a.png"/>
-                    	</Button.OpacityMask>
-                    	<Button.Background>
-                    		<ImageBrush Stretch="Uniform" ImageSource="help_a.png"/>
-                    	</Button.Background>
+                        <Button.OpacityMask>
+                            <ImageBrush Stretch="Uniform" ImageSource="help_a.png"/>
+                        </Button.OpacityMask>
+                        <Button.Background>
+                            <ImageBrush Stretch="Uniform" ImageSource="help_a.png"/>
+                        </Button.Background>
                     </Button>
                 </Grid>
             </TabItem>
