@@ -57,7 +57,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="VideoScreenShot.cs" />
     <Page Include="FullscreenPics.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

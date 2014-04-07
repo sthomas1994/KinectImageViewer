@@ -33,7 +33,9 @@ namespace KinectImageViewer
         DispatcherTimer pauser = new DispatcherTimer();
 
         protected string[] picFiles;
+        protected string[] vidFiles;
         protected int currentImg = 0;
+        protected int currentVid = 0;
         protected bool isPlaying = false;
         protected bool mediaOpened = false;
         protected bool tabOpened = false;
@@ -49,12 +51,18 @@ namespace KinectImageViewer
             string[] ext = { ".jpg", ".jpeg", ".gif", ".png", ".bmp", ".tiff"};
             picFiles = Directory.GetFiles(i, "*.*")
                 .Where(f => ext.Contains(new FileInfo(f).Extension.ToLower())).ToArray();
-            Console.WriteLine(picFiles.Length);   
+            Console.WriteLine(picFiles.Length);
+            String v = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
+            string[] v_ext = { ".mp4", ".wmv", ".wma", ".mov", ".avi" };
+            vidFiles = Directory.GetFiles(v, "*.*")
+                .Where(g => v_ext.Contains(new FileInfo(g).Extension.ToLower())).ToArray();
+            Console.WriteLine(vidFiles.Length);  
             ShowCurrentImage();
             ShowNextImage();
             ShowSecondNextImage();
             ShowPreviousImage();
             ShowSecondPreviousImage();
+            myMediaElement.Source = new Uri(vidFiles[currentVid], UriKind.Absolute);
         }
 
         private void pause_Media(object sender, EventArgs e)
@@ -96,6 +104,14 @@ namespace KinectImageViewer
             {
                 BitmapImage bm = new BitmapImage(new Uri(picFiles[currentImg], UriKind.RelativeOrAbsolute));
                 ImageBox.Source = bm;
+            }
+        }
+
+        protected void ShowCurrentVideo()
+        {
+            if (currentVid >= 0 && currentVid <= vidFiles.Length - 1)
+            {
+                myMediaElement.Source = new Uri(vidFiles[currentVid], UriKind.Absolute);
             }
         }
 
@@ -368,6 +384,7 @@ namespace KinectImageViewer
 
         private void image_Button_Click(object sender, RoutedEventArgs e)
         {
+            /*
             var source = myMediaElement.Source;
 
             VideoScreenShot.CaptureScreenAsync(source, new Dictionary<TimeSpan, object> { 
@@ -376,6 +393,7 @@ namespace KinectImageViewer
 				{TimeSpan.FromSeconds(30), "image2"} ,
 				{TimeSpan.FromSeconds(40), "image3"} ,
 			}, .1, makeJpeg, makeThumbnails);
+             */ 
             //VideoScreenShot.CaptureScreenAsync(source, TimeSpan.FromSeconds(10), "image0", .1, makeJpeg, makeThumbnails);
             //VideoScreenShot.CaptureScreenAsync(source, TimeSpan.FromSeconds(43) + TimeSpan.FromMilliseconds(760), "image1", makeThumbnails);
         }
@@ -400,16 +418,52 @@ namespace KinectImageViewer
             }
             pauser.Tick += pause_Media;
             pauser.Start();
+            /*
             var source = myMediaElement.Source;
 
             VideoScreenShot.CaptureScreenAsync(source, new Dictionary<TimeSpan, object> { 
-				{TimeSpan.FromSeconds(10), "image0"} ,
-				{TimeSpan.FromSeconds(20), "image1"} ,
-				{TimeSpan.FromSeconds(30), "image2"} ,
-				{TimeSpan.FromSeconds(40), "image3"} ,
+				{TimeSpan.FromSeconds(5), "image1"} ,
 			}, .1, makeJpeg, makeThumbnails);
+            */ 
             //VideoScreenShot.CaptureScreenAsync(source, TimeSpan.FromSeconds(10), "image0", .1, makeJpeg, makeThumbnails);
             //VideoScreenShot.CaptureScreenAsync(source, TimeSpan.FromSeconds(43) + TimeSpan.FromMilliseconds(760), "image1", makeThumbnails);
+        }
+
+        private void vid_Next_Click(object sender, RoutedEventArgs e)
+        {
+            myMediaElement.Stop();
+            isPlaying = false;
+            if (vidFiles.Length > 0)
+            {
+                currentVid = currentVid == vidFiles.Length - 1 ? 0 : ++currentVid;
+
+                ShowCurrentVideo();
+            }
+            /*
+            var source = myMediaElement.Source;
+
+            VideoScreenShot.CaptureScreenAsync(source, new Dictionary<TimeSpan, object> { 
+				{TimeSpan.FromSeconds(5), "image1"} ,
+			}, .1, makeJpeg, makeThumbnails);
+             */ 
+        }
+
+        private void vid_Prev_Click(object sender, RoutedEventArgs e)
+        {
+            myMediaElement.Stop();
+            isPlaying = false;
+            if (vidFiles.Length > 0)
+            {
+                currentVid = currentVid == 0 ? vidFiles.Length - 1 : --currentVid;
+                ShowCurrentVideo();
+            }
+            /*
+            var source = myMediaElement.Source;
+
+            VideoScreenShot.CaptureScreenAsync(source, new Dictionary<TimeSpan, object> { 
+				{TimeSpan.FromSeconds(5), "image1"} ,
+			}, .1, makeJpeg, makeThumbnails);
+             */ 
         }
     }
 }

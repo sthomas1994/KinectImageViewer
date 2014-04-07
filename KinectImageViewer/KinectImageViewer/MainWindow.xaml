@@ -106,7 +106,11 @@
                     <ImageBrush Stretch="Uniform" ImageSource="file_movie.png"/>
                 </TabItem.Background>
                 <Grid Background="Black">
-                    <Button Content="" HorizontalAlignment="Left" Height="467.845" Margin="7.5,27,0,0" VerticalAlignment="Top" Width="26.8" RenderTransformOrigin="0.5,0.5" Focusable="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="vid_Prev" Content="" HorizontalAlignment="Left" Height="468" Margin="0,27,0,0" VerticalAlignment="Top" Width="26" Click="vid_Prev_Click" RenderTransformOrigin="0.5,0.5" Focusable="False" Grid.Column="1">
                         <Button.OpacityMask>
                             <ImageBrush ImageSource="br_next.png" Stretch="Uniform"/>
                         </Button.OpacityMask>
@@ -122,18 +126,18 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
-                    <Button Content="" Height="467.845" HorizontalAlignment="Right" Margin="0,27,10.5,0" VerticalAlignment="Top" Focusable="False" Width="26.8">
+                    <Button x:Name="vid_Next" Height="468" HorizontalAlignment="Right" Margin="0,27,10,0" VerticalAlignment="Top" Click="vid_Next_Click" Focusable="False" Width="27" Grid.Column="1">
                         <Button.OpacityMask>
                             <ImageBrush Stretch="Uniform" ImageSource="br_next.png"/>
                         </Button.OpacityMask>
                     </Button>
                     <!--<StackPanel Background="Black">-->
-                    <Viewbox HorizontalAlignment="Center" Height="auto" Margin="80,27,80,200" VerticalAlignment="Top" Width="auto" Stretch="Uniform">
+                    <Viewbox HorizontalAlignment="Center" Height="auto" Margin="80,27,80,200" VerticalAlignment="Top" Width="auto" Stretch="Uniform" Grid.Column="1">
                         <!--<StackPanel Background="Black">-->
-                        <MediaElement Source="C:\Users\Public\Videos\Sample Videos\Wildlife.wmv" x:Name="myMediaElement" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Top" Width="auto" LoadedBehavior="Manual" UnloadedBehavior="Stop" 
+                        <MediaElement x:Name="myMediaElement" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Top" Width="auto" LoadedBehavior="Manual" UnloadedBehavior="Stop" 
                     		Stretch="Fill" ScrubbingEnabled="True" MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"/>
                     </Viewbox>
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,0,0,90">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,0,0,90" Grid.Column="1" Height="60" Width="414">
 
                         <!-- Play button. -->
                         <Image Source="images\play.gif" MouseDown="OnMouseDownPlayMedia" Margin="5" Width="50" Height="50" />
@@ -156,7 +160,7 @@
                         <!--<TextBlock Foreground="White" Margin="5"  VerticalAlignment="Center"><Run Text="Seek To"/></TextBlock>-->
                         <!--<Slider x:Name="timelineSlider" Margin="5" ValueChanged="SeekToMediaPosition" Width="70" Height="23"/>-->
                     </StackPanel>
-                    <Button Content="" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="76" Click="fullscrnVidBtn_Click" Height="64" Focusable="False">
+                    <Button Content="" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="76" Click="fullscrnVidBtn_Click" Height="64" Focusable="False" Grid.Column="1">
                         <Button.OpacityMask>
                             <ImageBrush Stretch="Uniform" ImageSource="appbar_fullscreen.png"/>
                         </Button.OpacityMask>
@@ -164,8 +168,8 @@
                             <ImageBrush Stretch="Uniform" ImageSource="appbar_fullscreen.png"/>
                         </Button.Background>
                     </Button>
-                    <Slider x:Name="DurationSlider" ValueChanged="SeekToMediaPosition" MouseDown="OnMouseOverPauseMedia" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Margin="0,0,0,160" Width="532"/>
-                    <Image x:Name="image1" HorizontalAlignment="Right" Height="89" Margin="0,0,20,13" VerticalAlignment="Bottom" Width="139"/>
+                    <Slider x:Name="DurationSlider" ValueChanged="SeekToMediaPosition" MouseDown="OnMouseOverPauseMedia" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Margin="0,0,0,160" Width="532" Grid.Column="1"/>
+                    <!--<Image x:Name="image1" HorizontalAlignment="Right" Height="89" Margin="0,0,20,13" VerticalAlignment="Bottom" Width="139" Grid.Column="1"/>-->
                     <!-- </StackPanel>-->
                 </Grid>
             </TabItem>

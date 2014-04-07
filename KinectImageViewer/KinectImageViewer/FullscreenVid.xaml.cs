@@ -26,8 +26,8 @@ namespace KinectImageViewer
     {
         DispatcherTimer ticks = new DispatcherTimer();
 
-        protected string[] picFiles;
-        protected int currentImg = 0;
+        protected string[] vidFiles;
+        protected int currentVid = 0;
         protected bool isPlaying = false;
         protected double time = 0;
         protected double volume = 0;
@@ -35,9 +35,9 @@ namespace KinectImageViewer
         protected double maxTime = 0;
         protected bool mediaOpened = false;
 
-        public FullscreenVid(int shownImg, bool playing, double timeIn, double volumeIn, double speedIn, double maxTimeIn, bool opened)
+        public FullscreenVid(int shownVid, bool playing, double timeIn, double volumeIn, double speedIn, double maxTimeIn, bool opened)
         {
-            currentImg = shownImg;
+            currentVid = shownVid;
             InitializeComponent();
             time = timeIn;
             volume = volumeIn;
@@ -77,20 +77,38 @@ namespace KinectImageViewer
             volumeSlider.Value = volume;
 
         }
-         */ 
+         */
+
+        protected void ShowCurrentVideo()
+        {
+            if (currentVid >= 0 && currentVid <= vidFiles.Length - 1)
+            {
+                myVideoElement.Source = new Uri(vidFiles[currentVid], UriKind.Absolute);
+            }
+        }
 
 
         private void previousBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (picFiles.Length > 0)
+            myVideoElement.Stop();
+            isPlaying = false;
+            if (vidFiles.Length > 0)
             {
-  
+                currentVid = currentVid == 0 ? vidFiles.Length - 1 : --currentVid;
+                ShowCurrentVideo();
             }
         }
 
         private void nextBtn_Click(object sender, System.EventArgs e)
         {
+            myVideoElement.Stop();
+            isPlaying = false;
+            if (vidFiles.Length > 0)
+            {
+                currentVid = currentVid == vidFiles.Length - 1 ? 0 : ++currentVid;
 
+                ShowCurrentVideo();
+            }
         }
 
         void OnMouseDownPlayMedia(object sender, MouseButtonEventArgs args)
@@ -226,6 +244,15 @@ namespace KinectImageViewer
         private void Exit(object sender, System.EventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            String v = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
+            string[] v_ext = { ".mp4", ".wmv", ".wma", ".mov", ".avi" };
+            vidFiles = Directory.GetFiles(v, "*.*")
+                .Where(g => v_ext.Contains(new FileInfo(g).Extension.ToLower())).ToArray();
+            Console.WriteLine(vidFiles.Length); 
         }
 
 

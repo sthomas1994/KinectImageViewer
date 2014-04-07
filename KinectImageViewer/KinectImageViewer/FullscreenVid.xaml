@@ -1,7 +1,8 @@
 ﻿<Window x:Class="KinectImageViewer.FullscreenVid"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Fullscreen" Height="673.256" Width="1020.93" WindowState="Maximized" WindowStyle="None">
+        Title="Fullscreen" Height="673.256" Width="1020.93" WindowState="Maximized" WindowStyle="None"
+        Loaded="Window_Loaded">
     <Grid Background="Black">
         <Viewbox HorizontalAlignment="Center" Height="auto" Margin="0,0,0,80" VerticalAlignment="Center" Width="auto" Stretch="Uniform">
             <MediaElement Source="C:\Users\Public\Videos\Sample Videos\Wildlife.wmv" x:Name="myVideoElement" HorizontalAlignment="Center" Height="auto" VerticalAlignment="Center" Width="auto" LoadedBehavior="Manual" UnloadedBehavior="Stop" 
